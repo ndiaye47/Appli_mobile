@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.example.contactapp" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android">
+    <name>GestionContacts</name>
+    <description>
+        Une application de gestion de contacts avec fonctionnalités CRUD
+    </description>
+    <author email="vous@email.com" href="http://votresite.com">
+        Votre Nom
+    </author>
+    <content src="index.html" />
+    <access origin="*" />
+    
+    <platform name="android">
+        <edit-config file="AndroidManifest.xml" mode="merge" target="/manifest/uses-permission">
+            <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+                <uses-permission android:name="android.permission.READ_CONTACTS" />
+                <uses-permission android:name="android.permission.WRITE_CONTACTS" />
+            </manifest>
+        </edit-config>
+        
+        <preference name="AndroidXEnabled" value="true" />
+        <allow-intent href="market:*" />
+    </platform>
+    
+    <plugin name="cordova-plugin-contacts" spec="^3.0.1" />
+    <plugin name="cordova-plugin-android-permissions" spec="^1.1.5" />
+    
+</widget>

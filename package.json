@@ -1,0 +1,40 @@
+{
+  "name": "sn.esp.dgi.master1.contactel",
+  "displayName": "ContacTel",
+  "version": "1.0.0",
+  "description": "A sample Apache Cordova application that responds to the deviceready event.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "ecosystem:cordova"
+  ],
+  "author": "Apache Cordova Team",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "cordova-android": "^14.0.1",
+    "cordova-plugin-android-permissions": "^1.1.5",
+    "cordova-plugin-cache": "^1.0.5",
+    "cordova-plugin-camera": "^8.0.0",
+    "cordova-plugin-contacts": "^3.0.1",
+    "cordova-plugin-dialogs": "^2.0.2",
+    "cordova-plugin-network-information": "^3.0.0",
+    "cordova-plugin-permissions": "^0.0.1-security"
+  },
+  "cordova": {
+    "platforms": [
+      "android"
+    ],
+    "plugins": {
+      "cordova-plugin-contacts": {},
+      "com.tiltshiftfocus.cordova.plugin.clearCache": {},
+      "cordova-plugin-android-permissions": {},
+      "cordova-plugin-network-information": {},
+      "cordova-plugin-dialogs": {},
+      "cordova-plugin-camera": {
+        "ANDROIDX_CORE_VERSION": "1.6.+"
+      }
+    }
+  }
+}

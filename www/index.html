@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>ContacTel - Gestionnaire de Contacts</title>
+    <link rel="stylesheet" href="lib/jquery.mobile-1.4.5.min.css">
+    <link rel="stylesheet" href="css/index.css">
+    <script src="lib/jquery.min.js"></script>
+    <script src="lib/jquery.mobile-1.4.5.min.js"></script>
+    <script src="cordova.js"></script>
+    <script src="js/index.js"></script>
+    
+</head>
+<body>
+   
+    <div id="mainPage" class="page">
+        <header class="header">
+            <div class="header-content">
+                <h1>📱 ContacTel</h1>
+                <div class="header-actions">
+                    <span id="contactCount" class="contact-count">0 contacts</span>
+                </div>
+            </div>
+        </header>
+
+        <main class="content">
+            
+            <div class="search-container">
+                <div class="search-icon">🔍</div>
+                <input 
+                    type="text" 
+                    id="searchInput" 
+                    class="search-input" 
+                    placeholder="Rechercher un contact..."
+                    autocomplete="off"
+                >
+            </div>
+
+         
+            <ul id="contactList" class="contact-list">
+              
+            </ul>
+
+            
+            <div id="emptyState" class="empty-state" style="display: none;">
+                <div class="empty-state-icon">👥</div>
+                <h3 class="empty-state-title">Aucun contact</h3>
+                <p class="empty-state-description">
+                    Commencez par ajouter votre premier contact en appuyant sur le bouton +
+                </p>
+            </div>
+        </main>
+
+        
+        <button id="addContactBtn" class="btn-fab" title="Ajouter un contact">
+            ➕
+        </button>
+
+        <footer class="footer">
+            <p>M1IABD © 2025 - Gestionnaire de Contacts</p>
+        </footer>
+    </div>
+
+    
+    <div id="addContactPage" class="page hidden">
+        <header class="header">
+            <div class="header-content">
+                <button id="backToMainBtn" class="back-btn">
+                    ← Retour
+                </button>
+                <h1>Nouveau Contact</h1>
+                <div></div>
+            </div>
+        </header>
+        
+
+        <main class="content">
+            <div class="contact-detail">
+                <form id="addContactForm">
+                    
+                    <div class="form-group">
+                        <label for="nom" class="form-label">Nom *</label>
+                        <input 
+                            type="text" 
+                            id="nom" 
+                            class="form-input" 
+                            placeholder="Nom de famille"
+                            required
+                            autocomplete="family-name"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="prenom" class="form-label">Prénom *</label>
+                        <input 
+                            type="text" 
+                            id="prenom" 
+                            class="form-input" 
+                            placeholder="Prénom"
+                            required
+                            autocomplete="given-name"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="telephone" class="form-label">Téléphone *</label>
+                        <input 
+                            type="tel" 
+                            id="telephone" 
+                            class="form-input" 
+                            placeholder="XXXXXXXXXXXXX"
+                            required
+                            autocomplete="tel"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email" class="form-label">Email</label>
+                        <input 
+                            type="email" 
+                            id="email" 
+                            class="form-input" 
+                            placeholder="abcd@email.com"
+                            autocomplete="email"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="poste" class="form-label">Poste / Fonction</label>
+                        <input 
+                            type="text" 
+                            id="poste" 
+                            class="form-input" 
+                            placeholder="Développeur, Manager, etc."
+                            autocomplete="organization-title"
+                        >
+                    </div>
+
+                    <div class="action-buttons">
+                        <button type="button" id="cancelAddBtn" class="btn btn-secondary">
+                            ❌ Annuler
+                        </button>
+                        <button type="submit" class="btn btn-success">
+                            ✅ Ajouter
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>M1IABD © 2025 - Gestionnaire de Contacts</p>
+        </footer>
+    </div>
+
+    
+<div id="detailContactPage" class="page hidden">
+    <header class="header">
+            <div class="header-content">
+                <button id="backToListBtn" class="back-btn">
+                    ← Retour
+                </button>
+                <h1>Détails</h1>
+                <div></div>
+            </div>
+        </header>
+
+        <main class="content">
+            <div class="contact-detail">
+                <div class="contact-header">
+                    <div id="contactPhoto" class="contact-photo">
+                        
+                    </div>
+                    <h2 id="contactName" class="contact-title">Nom du contact</h2>
+                </div>
+
+                <div class="contact-details">
+                    <div class="detail-item">
+                        <div class="detail-icon">📞</div>
+                        <div class="detail-content">
+                            <div class="detail-label">Téléphone</div>
+                            <div id="contactPhone" class="detail-value">Non renseigné</div>
+                        </div>
+                    </div>
+
+                    <div class="detail-item">
+                        <div class="detail-icon">📧</div>
+                        <div class="detail-content">
+                            <div class="detail-label">Email</div>
+                            <div id="contactEmail" class="detail-value">Non renseigné</div>
+                        </div>
+                    </div>
+
+                    <div class="detail-item">
+                        <div class="detail-icon">💼</div>
+                        <div class="detail-content">
+                            <div class="detail-label">Poste</div>
+                            <div id="contactJob" class="detail-value">Non renseigné</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <button id="editContactBtn" class="btn btn-primary">
+                        ✏️ Modifier
+                    </button>
+                    <button id="deleteContactBtn" class="btn btn-danger">
+                        🗑️ Supprimer
+                    </button>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>M1IABD © 2025 - Gestionnaire de Contacts</p>
+        </footer>
+    </div>
+
+    
+    <div id="editContactPage" class="page hidden">
+        <header class="header">
+            <div class="header-content">
+                <button id="backToDetailBtn" class="back-btn">
+                    ← Retour
+                </button>
+                <h1>Modifier Contact</h1>
+                <div></div>
+            </div>
+        </header>
+
+        <main class="content">
+            <div class="contact-detail">
+                <form id="editContactForm">
+                    <div class="form-group">
+                        <label for="editNom" class="form-label">Nom *</label>
+                        <input 
+                            type="text" 
+                            id="editNom" 
+                            class="form-input" 
+                            placeholder="Nom de famille"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="editPrenom" class="form-label">Prénom *</label>
+                        <input 
+                            type="text" 
+                            id="editPrenom" 
+                            class="form-input" 
+                            placeholder="Prénom"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="editTelephone" class="form-label">Téléphone *</label>
+                        <input 
+                            type="tel" 
+                            id="editTelephone" 
+                            class="form-input" 
+                            placeholder="06 12 34 56 78"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="editEmail" class="form-label">Email</label>
+                        <input 
+                            type="email" 
+                            id="editEmail" 
+                            class="form-input" 
+                            placeholder="exemple@email.com"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="editPoste" class="form-label">Poste / Fonction</label>
+                        <input 
+                            type="text" 
+                            id="editPoste" 
+                            class="form-input" 
+                            placeholder="Développeur, Manager, etc."
+                        >
+                    </div>
+
+                    <div class="action-buttons">
+                        <button type="button" id="cancelEditBtn" class="btn btn-secondary">
+                            ❌ Annuler
+                        </button>
+                        <button type="submit" class="btn btn-success">
+                            💾 Sauvegarder
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>M1IABD © 2025 - Gestionnaire de Contacts</p>
+        </footer>
+    </div>
+
+    
+    <div id="toast" class="toast">
+        <span id="toastMessage"></span>
+    </div>
+    <script src="js/index.js"></script>
+</body>
+</html>
+
